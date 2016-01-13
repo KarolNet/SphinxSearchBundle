@@ -3,12 +3,16 @@ Some SphinxSearch integration with Symfony for `gigablah/sphinxphp` and `foolz/s
 ![Alt text](/doc/images/profiler_error.png?raw=true "Profiler with last error")
 
 
-### Version 0.1.* was released during [Codewave's shipit day!](http://codewave.eu/shipit-days.html)
+### Version 0.1.* was released during [Codewave's shipit day!](http://codewave.eu/pl/shipit-days.html)
 
 # Installation
 Install via composer:
 
-` composer require ekiwok/sphinxbundle `
+` composer require karolnet/sphinxbundle `
+
+Add to AppKernel.php
+
+`new \Ekiwok\SphinxBundle\EkiwokSphinxBundle()`
 
 ## QueryBuilder
 
@@ -16,15 +20,10 @@ You may register many connections. Example configuration is:
 
 ```
 ekiwok_sphinx:
-    connections:
-        default:
-            host: localhost
-            port: 9306
-            driver: pdo
-        remote:
-            host: remote-host
-            port: 9306
-            driver: mysqli
+    connection:
+        host: localhost
+        port: 9306
+        driver: pdo
 ```
 
 Default connection with following configuration will always be created unless you provide alternative default configuration:

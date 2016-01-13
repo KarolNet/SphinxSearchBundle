@@ -2,7 +2,7 @@
 
 namespace Ekiwok\SphinxBundle\Sphinx\QL;
 
-use Foolz\SphinxQL\Drivers\PdoConnection;
+use Foolz\SphinxQL\Drivers\Pdo\Connection as PdoConnection;
 use Foolz\SphinxQL\Drivers\SimpleConnection;
 use Foolz\SphinxQL\SphinxQL;
 use Ekiwok\SphinxBundle\Sphinx\SphinxDataProcessorInterface;
@@ -14,7 +14,7 @@ class Connection implements ConnectionInterface
     const DRIVER_MYSQLI = 'mysqli';
 
     /**
-     * @var \ConnectionInterface
+     * @var PdoConnection
      */
     protected $connection;
 
@@ -43,14 +43,17 @@ class Connection implements ConnectionInterface
     {
         $this->config = $config;
         $this->processor = $processor;
+
         switch ($config['driver'])
         {
             case self::DRIVER_PDO:
-                $this->connection = new PdoConnection(array('host' => $this->config['host'], 'port' => $this->config['port']));
+                $this->connection = new PdoConnection();
+                $this->connection->setParams(['host' => $this->config['host'], 'port' => $this->config['port']]);
             return;
 
             case self::DRIVER_MYSQLI:
-                $this->connection = new PdoConnection(array('host' => $this->config['host'], 'port' => $this->config['port']));
+                $this->connection = new PdoConnection();
+                $this->connection->setParams(['host' => $this->config['host'], 'port' => $this->config['port']]);
             return;
         }
 
@@ -70,6 +73,7 @@ class Connection implements ConnectionInterface
      */
     public function query($query)
     {
+        $result = [];
         try {
             $result = $this->connection->query($query);
         } catch (\Exception $e) {
@@ -88,6 +92,7 @@ class Connection implements ConnectionInterface
      */
     public function multiQuery(Array $queue)
     {
+        $result = [];
         try {
             $result = $this->connection->multiQuery($queue);
         } catch (\Exception $e) {
@@ -95,7 +100,7 @@ class Connection implements ConnectionInterface
             throw $e;
         } finally {
             $meta = $this->connection->query('SHOW META');
-            die(var_dump($meta));
+
             $this->processor->processSQLQuery(implode(';', $queue), $meta);
         }
 

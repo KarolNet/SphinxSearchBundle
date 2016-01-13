@@ -74,8 +74,9 @@ class SphinxStatsCollector extends DataCollector implements SphinxDataProcessorI
     /**
      * {@inheritdoc}
      */
-    public function processSQLQuery($query, array $info)
+    public function processSQLQuery($query,  $info)
     {
+//        var_dump($info);
         $tmp =& $this->data['sql'];
         foreach ($info as $piece) {
             switch ($piece['Variable_name'])

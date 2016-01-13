@@ -10,7 +10,7 @@ namespace Ekiwok\SphinxBundle\Sphinx;
 
 use Sphinx\SphinxClient;
 
-class SphinxClientDecorator extends SphinxClient
+class SphinxClientDecorator
 {
     /**
      * @var SphinxClient
@@ -28,7 +28,7 @@ class SphinxClientDecorator extends SphinxClient
     /**
      * {@inheritdoc}
      */
-    public static function create()
+    public function create()
     {
         return $this->proxy->create();
     }

@@ -16,11 +16,10 @@ interface SphinxDataProcessorInterface
 
     /**
      * @param  string  $query
-     * @param  string  $success
-     * @param  integer $time
+     * @param  array  $info
      * @return integer          query identifier
      */
-    public function processSQLQuery($query, array $info);
+    public function processSQLQuery($query,  $info);
     
     /**
      * @param string $message

@@ -21,6 +21,6 @@ class ConnectionException extends \RuntimeException
      */
     public static function unsupportedDriver($name, $availableDrivers = array())
     {
-        return new self(sprintf("Driver '%s' is not supportd.. Available drivers are: [%s]", $name, implode(', ', $availableConnections)));
+        return new self(sprintf("Driver '%s' is not supported. Available drivers are: [%s]", $name, implode(', ', $availableDrivers)));
     }
 }
