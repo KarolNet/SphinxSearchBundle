@@ -1,5 +1,5 @@
 {
-    "name": "KarolNet/sphinxbundle",
+    "name": "karolnet/sphinxbundle",
     "type": "library",
     "description": "Symfony integration for SphinxSearch",
     "keywords": ["sphinx", "sphinxsearch", "search", "profiler"],
