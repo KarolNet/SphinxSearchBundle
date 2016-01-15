@@ -36,10 +36,6 @@ Default connection with following configuration will always be created unless yo
 
 It means if you want to use pdo and you are running sphinx daemon on localhost on port 9306 you do not have to provide any configuration.
 
-Please notice that `$this->get('sphinx')->getConnection()` is equivalent to `$this->get('sphinx')->getConnection('default')`.
-
-Connections returned by `sphinx` service implements `Ekiwok\SphinxBundle\Sphinx\QL\ConnectionInterface` that extends `Foolz\SphinxQL\Drivers\ConnectionInterface` by `createQueryBuilder()` method so thay may be (and shoud be) used interchangeable with Foolz\SphinxQL connections.
-
 Examples of usage:
 
 ```

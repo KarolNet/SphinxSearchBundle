@@ -19,7 +19,7 @@ class Sphinx
     protected $processor;
 
     /**
-     * @var array
+     * @var Connection
      */
     protected $connection;
 

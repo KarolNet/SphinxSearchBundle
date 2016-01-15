@@ -10,19 +10,19 @@ use Ekiwok\SphinxBundle\Sphinx\SphinxDataProcessorInterface;
 class SphinxStatsCollector extends DataCollector implements SphinxDataProcessorInterface
 {
     /**
-     * Prepars arrays for upcoming data.
+     * Prepares arrays for upcoming data.
      */
     public function __construct()
     {
-        $this->data['queries'] = array();
-        $this->data['errors'] = array();
-        $this->data['warnings'] = array();
+        $this->data['queries'] = [];
+        $this->data['errors'] = [];
+        $this->data['warnings'] = [];
         $this->data['time_summary'] = 0; // in milliseconds
 
         $this->data = array(
-            'queries' => array(),
-            'errors'  => array(),
-            'warnings' => array(),
+            'queries' => [],
+            'errors'  => [],
+            'warnings' => [],
             'time_summary' => 0,
             'sql' => array(
                     'queries' => array(),
@@ -76,7 +76,6 @@ class SphinxStatsCollector extends DataCollector implements SphinxDataProcessorI
      */
     public function processSQLQuery($query,  $info)
     {
-//        var_dump($info);
         $tmp =& $this->data['sql'];
         foreach ($info as $piece) {
             switch ($piece['Variable_name'])
